@@ -1,0 +1,12 @@
+name: ${project.name}
+main: ${project.groupId}.${project.artifactId}.${project.name}
+version: ${project.version}
+
+author: gorbb
+description: ${project.description}
+website: ${project.url}
+
+commands:
+ group:
+  description: [todo]
+  usage: Try /<command> for help.

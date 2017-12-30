@@ -1,0 +1,36 @@
+maxGroupSize: 5
+
+radial:
+ distance: 20
+ measureY: true
+
+radialBoosts:
+ xp:
+  enabled: true
+  amount: 10
+ protection:
+  enabled: true
+  amount: 10
+ speed:
+  enabled: true
+  level: 1
+
+globalBoosts:
+ xpShare:
+  enabled: true
+  amount: 50
+ pvp:
+  enabled: true
+
+#Radial boosts apply when two or more players in a group are close together
+#They are applied every few seconds whilst they are near
+
+#Global boosts are applied no matter the distance
+#They are applied by event listeners
+
+#radial.xp: Gives a player an increase in XP gaining activities
+#radial.protection: Reduces damage recieved by a given percentage
+#radial.speed: Makes players faster
+
+#global.xp: Shares a small percentage of xp gained with other players in the group
+#global.pvp: Disables damage between players in a group
