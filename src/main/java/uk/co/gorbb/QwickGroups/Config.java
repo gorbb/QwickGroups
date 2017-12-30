@@ -16,10 +16,11 @@ public class Config {
 						gloablXpEnabled,
 						globalPvpEnabled;
 	
-	private int			radialXpAmount,
+	private double		radialXpAmount,
 						radialProtectionAmount,
-						globalXpAmount,
-						radialSpeedLevel;
+						globalXpAmount;
+	
+	private int			radialSpeedLevel;
 	
 	public int getMaxGroupSize() {
 		return maxGroupSize;
@@ -53,16 +54,16 @@ public class Config {
 		return globalPvpEnabled;
 	}
 
-	public float getRadialXpAmount() {
-		return radialXpAmount / 100f;
+	public double getRadialXpAmount() {
+		return radialXpAmount;
 	}
 
-	public float getRadialProtectionAmount() {
-		return radialProtectionAmount / 100f;
+	public double getRadialProtectionAmount() {
+		return radialProtectionAmount;
 	}
 
-	public float getGlobalXpAmount() {
-		return globalXpAmount / 100f;
+	public double getGlobalXpAmount() {
+		return globalXpAmount;
 	}
 
 	public int getRadialSpeedLevel() {
@@ -85,9 +86,9 @@ public class Config {
 		gloablXpEnabled			= config.getBoolean("globalBoosts.xpShare.enabled");
 		globalPvpEnabled		= config.getBoolean("globalBoosts.pvp.enabled");
 		
-		radialXpAmount			= config.getInt("radialBoosts.xp.amount");
-		radialProtectionAmount	= config.getInt("radialBoosts.protection.amount");
-		globalXpAmount			= config.getInt("globalBoosts.xpShare.amount");
+		radialXpAmount			= config.getDouble("radialBoosts.xp.amount");
+		radialProtectionAmount	= config.getDouble("radialBoosts.protection.amount");
+		globalXpAmount			= config.getDouble("globalBoosts.xpShare.amount");
 		
 		radialSpeedLevel		= config.getInt("radialBoosts.speed.level");
 	}

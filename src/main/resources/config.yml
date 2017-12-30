@@ -7,10 +7,10 @@ radial:
 radialBoosts:
  xp:
   enabled: true
-  amount: 10
+  amount: 0.1
  protection:
   enabled: true
-  amount: 10
+  amount: 0.1
  speed:
   enabled: true
   level: 1
@@ -18,7 +18,7 @@ radialBoosts:
 globalBoosts:
  xpShare:
   enabled: true
-  amount: 50
+  amount: 0.5
  pvp:
   enabled: true
 

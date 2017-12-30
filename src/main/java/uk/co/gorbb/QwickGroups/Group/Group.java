@@ -78,4 +78,48 @@ public class Group {
 			Bukkit.getPlayer(iterator.next()).giveExp(exp);
 	}
 	
+	public boolean hasGroupInRange(Player player, int distance, boolean measureY) {
+		//Sqaure the distance to save a bit of pc brain power
+		distance *= distance;
+		
+		if (inRange(Bukkit.getPlayer(leader), player, distance, measureY))
+			return true;
+		
+		Iterator<UUID> iterator = members.iterator();
+		
+		while (iterator.hasNext())
+			if (inRange(Bukkit.getPlayer(iterator.next()), player, distance, measureY))
+				return true;
+		
+		return false;
+	}
+	
+	private boolean inRange(Player thisPlayer, Player otherPlayer, int distance, boolean measureY) {
+		//Check that they aren't the same player
+		if (thisPlayer.getUniqueId().equals(otherPlayer.getUniqueId()))
+			return false;
+		
+		//Check the players are in the same world
+		if (!thisPlayer.getWorld().equals(otherPlayer.getWorld()))
+			return false;
+		
+		double sqrDist = 0;
+		
+		if (measureY)
+			sqrDist = thisPlayer.getLocation().distanceSquared(otherPlayer.getLocation());
+		else {
+			double x1 = thisPlayer.getLocation().getX();
+			double x2 = otherPlayer.getLocation().getX();
+			double z1 = thisPlayer.getLocation().getZ();
+			double z2 = otherPlayer.getLocation().getZ();
+			
+			double dX = x2 - x1;
+			double dZ = z2 - z1;
+			
+			sqrDist = dX * dX + dZ * dZ;
+		}
+		
+		return sqrDist <= distance;
+	}
+	
 }

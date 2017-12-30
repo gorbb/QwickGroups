@@ -1,6 +1,7 @@
 package uk.co.gorbb.QwickGroups.Events;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 
@@ -10,7 +11,7 @@ import uk.co.gorbb.QwickGroups.Group.GroupManager;
 
 public class XpShareListener implements Listener {
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onPlayerXpGain(PlayerExpChangeEvent event) {
 		//First check if the player is in a group
 		Group group = GroupManager.getGroupManager().getGroup(event.getPlayer());
@@ -24,7 +25,7 @@ public class XpShareListener implements Listener {
 		if (amount <= 0)
 			return;
 		
-		float multiplier = QwickGroups.get().getLocalConfig().getGlobalXpAmount();
+		double multiplier = QwickGroups.get().getLocalConfig().getGlobalXpAmount();
 		
 		//Round up to the nearest whole number
 		int extra = (int) Math.ceil(multiplier * amount);

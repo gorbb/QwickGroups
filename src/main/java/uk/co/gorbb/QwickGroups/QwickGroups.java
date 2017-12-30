@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import uk.co.gorbb.QwickGroups.Events.PlayerDisconnectListener;
 import uk.co.gorbb.QwickGroups.Events.PvpListener;
+import uk.co.gorbb.QwickGroups.Events.XpBoostListener;
 import uk.co.gorbb.QwickGroups.Events.XpShareListener;
 import uk.co.gorbb.QwickGroups.Group.GroupManager;
 
@@ -53,6 +54,10 @@ public class QwickGroups extends JavaPlugin {
 		//PvP (global)
 		if (config.isGlobalPvpEnabled())
 			pluginManager.registerEvents(new PvpListener(), this);
+		
+		//XP Boost (radial)
+		if (config.isRadialXpEnabled())
+			pluginManager.registerEvents(new XpBoostListener(), this);	
 	}
 	
 }
