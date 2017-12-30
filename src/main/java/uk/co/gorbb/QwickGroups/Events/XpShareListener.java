@@ -25,14 +25,12 @@ public class XpShareListener implements Listener {
 		if (amount <= 0)
 			return;
 		
-		double multiplier = QwickGroups.get().getLocalConfig().getGlobalXpAmount();
+		double multiplier = QwickGroups.get().getLocalConfig().getBoostXpShareAmount();
 		
 		//Round up to the nearest whole number
 		int extra = (int) Math.ceil(multiplier * amount);
 		
 		//Apply the XP, excluding the current player
 		group.applyExp(extra, event.getPlayer());
-		
-		QwickGroups.get().getLogger().info(event.getPlayer().getName() + " gained " + amount + " xp, giving " + extra + " to the other " + group.countMembers() + " member(s)");
 	}
 }

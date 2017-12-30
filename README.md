@@ -7,7 +7,7 @@ You'll need to have the JDK and Maven installed. Then, simply clone (or download
 You can then find the compiled *QwickGroups.jar* file in the `Exports/{version}` folder.
 
 ##Contributing
-Code to messy? Feel free to fork this repository, or open a pull request and make it better!
+Code too messy? Feel free to fork this repository, or open a pull request and make it better!
 
 ##Support
 Got a great idea, or need some help getting it working? Just open up an issue.

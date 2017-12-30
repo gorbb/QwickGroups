@@ -4,33 +4,55 @@ radial:
  distance: 20
  measureY: true
 
-radialBoosts:
- xp:
-  enabled: true
-  amount: 0.1
- protection:
-  enabled: true
-  amount: 0.1
- speed:
-  enabled: true
-  level: 1
-
-globalBoosts:
+boosts:
  xpShare:
   enabled: true
   amount: 0.5
  pvp:
   enabled: true
+ xpRadius:
+  enabled: true
+  amount: 0.1
+ effects:
+  - SPEED:0
+  - DAMAGE_RESISTANCE:0
+  - ABSORPTION:0
 
-#Radial boosts apply when two or more players in a group are close together
-#They are applied every few seconds whilst they are near
-
-#Global boosts are applied no matter the distance
-#They are applied by event listeners
-
-#radial.xp: Gives a player an increase in XP gaining activities
-#radial.protection: Reduces damage recieved by a given percentage
-#radial.speed: Makes players faster
-
-#global.xp: Shares a small percentage of xp gained with other players in the group
-#global.pvp: Disables damage between players in a group
+# Radial boosts apply when two or more players in a group are close together (see radial.distance)
+# Global boosts are applied no matter the distance between players
+#
+# xpShare   (global). Shares a percentage of xp gained with other players in the group
+# pvp       (global). Disables damage between players in a group
+# xpRadius  (radius). Gives players a percentage increase in XP-gaining activities
+# effects   (radius). Applies the supplied potion effect(s) to all players nearby each other
+#
+# Define effects in the format EFFECT:LEVEL, i.e. SPEED:0 gives Speed I to the player. SPEED:1 gives Speed II, etc
+#
+# Potion effects:
+#  - SPEED
+#  - SLOW
+#  - FAST_DIGGING
+#  - SLOW_DIGGING
+#  - INCREASE_DAMAGE
+#  - HEAL
+#  - HARM
+#  - JUMP
+#  - CONFUSION
+#  - REGENERATION
+#  - DAMAGE_RESISTANCE
+#  - FIRE_RESISTANCE
+#  - WATER_BREATHING
+#  - INVISIBILITY
+#  - BLINDNESS
+#  - NIGHT_VISION
+#  - HUNGER
+#  - WEAKNESS
+#  - POISON
+#  - WITHER
+#  - HEALTH_BOOST
+#  - ABSORPTION
+#  - SATURATION
+#  - GLOWING
+#  - LEVITATION
+#  - LUCK
+#  - UNLUCK

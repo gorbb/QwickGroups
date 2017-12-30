@@ -27,6 +27,10 @@ public class GroupManager {
 		groups 	= new LinkedList<Group>();
 	}
 	
+	public Iterator<Group> getGroupIterator() {
+		return groups.iterator();
+	}
+	
 	public Group createGroup(String name, Player leader) {
 		if (hasGroup(name) || hasGroup(leader))
 			return null;

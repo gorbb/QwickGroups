@@ -39,6 +39,9 @@ public class QwickGroups extends JavaPlugin {
 		
 		//Check config for other listeners
 		loadBoostListeners(pluginManager);
+		
+		//Register repeating tasks
+		getServer().getScheduler().runTaskTimer(this, new PotionEffectApplier(), 0, 60);
 	}
 	
 	@Override
@@ -48,15 +51,15 @@ public class QwickGroups extends JavaPlugin {
 	
 	private void loadBoostListeners(PluginManager pluginManager) {
 		//XP Share (global)
-		if (config.isGloablXpEnabled())
+		if (config.isBoostXpShareEnabled())
 			pluginManager.registerEvents(new XpShareListener(), this);
 		
 		//PvP (global)
-		if (config.isGlobalPvpEnabled())
+		if (config.isBoostPvpEnabled())
 			pluginManager.registerEvents(new PvpListener(), this);
 		
 		//XP Boost (radial)
-		if (config.isRadialXpEnabled())
+		if (config.isBoostXpRadiusEnabled())
 			pluginManager.registerEvents(new XpBoostListener(), this);	
 	}
 	

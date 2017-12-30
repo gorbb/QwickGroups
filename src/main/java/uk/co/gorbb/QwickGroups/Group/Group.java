@@ -3,10 +3,12 @@ package uk.co.gorbb.QwickGroups.Group;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 
 public class Group {
 	private String name;
@@ -108,6 +110,7 @@ public class Group {
 		if (measureY)
 			sqrDist = thisPlayer.getLocation().distanceSquared(otherPlayer.getLocation());
 		else {
+			//Manually check the distance
 			double x1 = thisPlayer.getLocation().getX();
 			double x2 = otherPlayer.getLocation().getX();
 			double z1 = thisPlayer.getLocation().getZ();
@@ -120,6 +123,56 @@ public class Group {
 		}
 		
 		return sqrDist <= distance;
+	}
+	
+	private List<Player> getAllPlayersInRange(int distance, boolean measureY) {
+		distance *= distance;
+		
+		List<Player> playersInRange = new LinkedList<Player>();
+		Stack<Player> playersToCheck = new Stack<Player>();
+		
+		//Add members to the check list
+		playersToCheck.add(Bukkit.getPlayer(leader));
+		Iterator<UUID> iterator = members.iterator();
+		
+		while (iterator.hasNext())
+			playersToCheck.add(Bukkit.getPlayer(iterator.next()));
+		
+		//Now start checking
+		while (!playersToCheck.isEmpty()) {
+			Player current = playersToCheck.pop();
+			
+			iterator = members.iterator();
+			
+			while (iterator.hasNext()) {
+				Player otherPlayer = Bukkit.getPlayer(iterator.next());
+				
+				if (inRange(current, otherPlayer, distance, measureY)) {
+					if (!playersInRange.contains(current))
+						playersInRange.add(current);
+					
+					if (!playersInRange.contains(otherPlayer))
+						playersInRange.add(otherPlayer);
+					
+					playersToCheck.remove(otherPlayer);
+				}
+			}
+		}
+		
+		return playersInRange;
+	}
+	
+	public void applyEffectsToPlayers(List<PotionEffect> effects, int distance, boolean measureY) {
+		List<Player> players 		= getAllPlayersInRange(distance, measureY);
+		Iterator<Player> iterator 	= players.iterator();
+		
+		while (iterator.hasNext()) 
+			applyEffectsToPlayer(iterator.next(), effects);
+	}
+	
+	private void applyEffectsToPlayer(Player player, List<PotionEffect> effects) {
+		for (PotionEffect effect : effects)
+			player.addPotionEffect(effect, true);
 	}
 	
 }

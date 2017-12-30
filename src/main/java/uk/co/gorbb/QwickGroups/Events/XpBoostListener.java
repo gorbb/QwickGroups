@@ -27,13 +27,11 @@ public class XpBoostListener implements Listener {
 		Config config = QwickGroups.get().getLocalConfig();
 		
 		int radius 		 = config.getRadialDistance();
-		double boost 	 = 1 + config.getRadialXpAmount();
+		double boost 	 = 1 + config.getBoostXpRadiusAmount();
 		boolean measureY = config.isRadialMeasureY();
 		
 		if (!group.hasGroupInRange(player, radius, measureY))
 			return;
-		
-		QwickGroups.get().getLogger().info("Players in range, adding xp boost");
 		
 		//Add the boost
 		int amount = event.getAmount();
